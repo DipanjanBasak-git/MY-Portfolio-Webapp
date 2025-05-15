@@ -7,6 +7,11 @@ Welcome to my personal portfolio website! This project showcases my skills and p
 
 🔗 Live Demo: https://dipanjan-portfolio.web.app
 
+## Here are some sample Images of the Site:
+image 1-- ![Screenshot 2025-05-15 080455](https://github.com/user-attachments/assets/58ec79f6-c02f-474c-9f63-a13b052a1e71)
+image 2-- ![Screenshot 2025-05-15 080537](https://github.com/user-attachments/assets/2f0a5f20-6f7e-404d-a6c6-bd1c32991ee1)
+
+
 ## Features
 
 🌗 Dark/Light Mode Toggle: A smooth and persistent theme switcher that remembers user preference using local storage.
