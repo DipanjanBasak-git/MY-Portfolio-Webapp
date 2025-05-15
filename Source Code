@@ -1,0 +1,1035 @@
+## Source Code-- (Index.html)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Portfolio - Dipanjan Basak</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+            margin: 0;
+        }
+        /* Light theme (default) */
+        body {
+            background-color: #f9fafb;
+            color: #1f2937;
+        }
+        /* Dark theme */
+        body.dark {
+            background-color: #1f2937;
+            color: #e5e7eb;
+        }
+        body.dark .bg-gray-100 {
+            background-color: #374151;
+        }
+        body.dark .bg-white {
+            background-color: #2d3748;
+        }
+        body.dark .text-gray-800 {
+            color: #d1d5db;
+        }
+        body.dark .text-gray-600 {
+            color: #9ca3af;
+        }
+        body.dark .bg-teal-600 {
+            background-color: #059669;
+        }
+        body.dark .hover\:bg-teal-700:hover {
+            background-color: #047857;
+        }
+        body.dark .text-teal-600 {
+            color: #34d399;
+        }
+        body.dark .hover\:text-teal-600:hover {
+            color: #6ee7b7;
+        }
+        body.dark .chat-overlay {
+            background: #2d3748;
+        }
+        body.dark .chat-header {
+            background: linear-gradient(to right, #059669, #2c7a7b);
+        }
+        body.dark .chat-messages {
+            background: #374151;
+        }
+        body.dark .message.ai {
+            background: #4b5563;
+            color: #e5e7eb;
+        }
+        body.dark .message.user {
+            background: #059669;
+        }
+        body.dark .chat-input {
+            background: #2d3748;
+            border-top: 1px solid #4b5563;
+        }
+        body.dark .more-skills-content {
+            background: #2d3748;
+        }
+        /* Sidebar Styling */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, #2c7a7b, #059669);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 20;
+        }
+        .sidebar img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            border: 4px solid white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .sidebar h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+        .typewriter {
+            font-size: 1rem;
+            font-weight: 400;
+            text-align: center;
+            overflow: hidden;
+            white-space: nowrap;
+            display: inline-block;
+            border-right: 2px solid white;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards 1s, typing 3s steps(40, end) forwards 1s, blink-caret 0.75s step-end 4 1s;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: white; }
+        }
+        /* Main Content */
+        .main-content {
+            margin-left: 300px;
+            padding: 2rem;
+        }
+        /* Fade-in animation for sections */
+        section {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Modern Chat Button Styles */
+        .chat-bubble {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 50;
+        }
+        #chatToggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2c7a7b, #059669);
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.5), 0 0 20px rgba(5, 150, 105, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: pulse 2s infinite;
+            position: relative;
+        }
+        #chatToggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(5, 150, 105, 0.7);
+        }
+        #chatToggle i {
+            font-size: 24px;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+        #chatToggle:hover i {
+            transform: rotate(20deg);
+        }
+        #chatToggle::after {
+            content: 'Ask me anything about Dipanjan Basak!';
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: #2d3748;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        #chatToggle:hover::after {
+            opacity: 1;
+        }
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.5), 0 0 20px rgba(5, 150, 105, 0.3);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(5, 150, 105, 0), 0 0 20px rgba(5, 150, 105, 0.3);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(5, 150, 105, 0), 0 0 20px rgba(5, 150, 105, 0.3);
+            }
+        }
+        .chat-overlay {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 360px;
+            height: 500px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            flex-direction: column;
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .chat-bubble.active .chat-overlay {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .chat-header {
+            background: linear-gradient(to right, #2c7a7b, #059669);
+            color: white;
+            padding: 16px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            background: #f9fafb;
+        }
+        .message {
+            margin-bottom: 12px;
+            max-width: 80%;
+            padding: 10px 14px;
+            border-radius: 12px;
+            line-height: 1.5;
+        }
+        .message.user {
+            background: #2c7a7b;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 4px;
+        }
+        .message.ai {
+            background: #e5e7eb;
+            color: #1f2937;
+            border-bottom-left-radius: 4px;
+        }
+        .message.typing {
+            background: #e5e7eb;
+            color: #6b7280;
+            font-style: italic;
+            display: flex;
+            align-items: center;
+        }
+        .message.typing::before {
+            content: '• • •';
+            display: inline-block;
+            margin-right: 8px;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+        .chat-input {
+            padding: 12px;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+        }
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 20px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .chat-input input:focus {
+            border-color: #059669;
+        }
+        .chat-input button {
+            margin-left: 8px;
+            padding: 10px;
+            background: #2c7a7b;
+            color: white;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .chat-input button:hover {
+            background: #059669;
+        }
+        /* Project Card Styles */
+        .project-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+        .project-image-container {
+            position: relative;
+            width: 100%;
+            height: 160px;
+            overflow: hidden;
+        }
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .project-image.active {
+            opacity: 1;
+        }
+        .project-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .project-card:hover .project-image-overlay {
+            opacity: 1;
+        }
+        .popup-image {
+            width: 40%;
+            height: 80%;
+            object-fit: cover;
+            border-radius: 8px;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .project-card:hover .popup-image {
+            transform: scale(1);
+        }
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            margin-top: 0.5rem;
+            color: #d4af37;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .github-link:hover {
+            color: #059669;
+            transform: scale(1.05);
+        }
+        .github-link i {
+            margin-right: 0.5rem;
+        }
+        /* Skills Section Styles */
+        .skills-container {
+            position: relative;
+            text-align: center;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+        .skill-item {
+            display: flex;
+            align-items: center;
+            space-x-2;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .skill-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .more-skills {
+            position: relative;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+        .more-skills-btn {
+            background: linear-gradient(to right, #2c7a7b, #059669);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 500;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        .more-skills-btn:hover {
+            background: linear-gradient(to right, #059669, #2c7a7b);
+            transform: scale(1.05);
+        }
+        .more-skills-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            z-index: 10;
+            min-width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 0.5rem;
+        }
+        .more-skills.active .more-skills-content {
+            display: block;
+        }
+        /* About Section Column Styling */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: center;
+            text-align: center;
+        }
+        /* Contact Links Styling */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 1rem 0;
+        }
+        .contact-link {
+            display: flex;
+            align-items: center;
+            color: #1f2937;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .contact-link i {
+            margin-right: 0.5rem;
+            font-size: 1.25rem;
+        }
+        .contact-link:hover {
+            color: #059669;
+            transform: scale(1.1);
+        }
+        body.dark .contact-link {
+            color: #e5e7eb;
+        }
+        body.dark .contact-link:hover {
+            color: #34d399;
+        }
+        /* Gradient Section Backgrounds */
+        #about {
+            background: linear-gradient(to bottom, #ffffff, #f1f5f9);
+        }
+        #projects {
+            background: linear-gradient(to bottom, #f1f5f9, #e2e8f0);
+        }
+        #skills {
+            background: linear-gradient(to bottom, #ffffff, #f1f5f9);
+        }
+        #contact {
+            background: linear-gradient(to bottom, #e2e8f0, #d1d5db);
+        }
+        @media (max-width: 1024px) {
+            .sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+                padding: 1.5rem;
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+            }
+        }
+        @media (max-width: 640px) {
+            .chat-overlay {
+                width: 90%;
+                height: 80vh;
+                right: 5%;
+            }
+            .chat-bubble {
+                bottom: 20px;
+                right: 20px;
+            }
+            .more-skills-content {
+                min-width: 250px;
+            }
+            .project-image-overlay {
+                gap: 5px;
+            }
+            .popup-image {
+                width: 45%;
+                height: 70%;
+            }
+            .contact-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Sidebar -->
+    <div class="sidebar" id="home">
+        <img src="https://i.ibb.co/p6p63xp3/Screenshot-2025-03-09-102450.png" alt="Profile picture of Dipanjan Basak">
+        <h1>Hi, I'm Dipanjan Basak</h1>
+        <p class="typewriter">A passionate Full Stack Developer</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Navbar -->
+        <nav class="bg-white shadow sticky top-0 z-10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <h1 class="text-xl font-bold text-gray-800">Portfolio</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <a href="#home" class="text-gray-600 hover:text-teal-600 transition-colors">Home</a>
+                        <a href="#about" class="text-gray-600 hover:text-teal-600 transition-colors">About</a>
+                        <a href="#projects" class="text-gray-600 hover:text-teal-600 transition-colors">Projects</a>
+                        <a href="#skills" class="text-gray-600 hover:text-teal-600 transition-colors">Skills</a>
+                        <a href="#contact" class="text-gray-600 hover:text-teal-600 transition-colors">Contact</a>
+                        <button id="themeToggle" class="text-gray-600 hover:text-teal-600 focus:outline-none transition-colors">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- About Section -->
+        <section id="about" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">About Me</h2>
+                <div class="about-grid">
+                    <div>
+                        <p class="text-gray-600 text-lg">
+                            I’m Dipanjan Basak, a Computer Science and Business Systems student at IEM, Kolkata, specializing in AI, Machine Learning, and Data Science. My research on "Machine Learning Applications for Detecting Autism Spectrum Disorder," published in IEEE Xplore, reflects my commitment to impactful healthcare solutions. With expertise in full-stack development, UI/UX design, and app development, I focus on creating scalable, user-centric applications. I hold Silver Plus Elite certifications from NPTEL in Object-Oriented Programming and Strategic Sales Management, and have gained practical experience through J.P. Morgan and AWS job simulations. I’m eager to collaborate on innovative projects—let’s connect!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Projects</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+                    <!-- Project 1: Super Store Sales Dashboard -->
+                    <div class="project-card">
+                        <div class="project-image-container">
+                            <img src="https://i.ibb.co/S4SJS5Qd/Screenshot-2025-01-12-114614.png" alt="Super Store Sales Dashboard - Sales Overview" class="project-image active">
+                            <img src="https://i.ibb.co/99Svs0pd/Screenshot-2025-01-12-121010.png" alt="Super Store Sales Dashboard - Forecast" class="project-image">
+                            <div class="project-image-overlay">
+                                <img src="https://i.ibb.co/S4SJS5Qd/Screenshot-2025-01-12-114614.png" alt="Super Store Sales Dashboard - Sales Overview" class="popup-image">
+                                <img src="https://i.ibb.co/99Svs0pd/Screenshot-2025-01-12-121010.png" alt="Super Store Sales Dashboard - Forecast" class="popup-image">
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Super Store Sales Dashboard</h3>
+                            <p class="text-gray-600 mb-2">A data analytics project using Power BI, featuring a 15-day sales forecast with insights into sales, profit, and regional performance.</p>
+                            <a href="https://github.com/DipanjanBasak-git/SuperStore-PowerBI-Dashboard" target="_blank" class="github-link">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Project 2: Amazon Sales Analysis 2022 -->
+                    <div class="project-card">
+                        <div class="project-image-container">
+                            <img src="https://i.ibb.co/h66DkjV/Screenshot-2025-03-18-185029.png" alt="Amazon Sales Analysis - Overview" class="project-image active">
+                            <img src="https://i.ibb.co/HLtGWdbp/Screenshot-2025-03-18-185047.png" alt="Amazon Sales Analysis - Product View" class="project-image">
+                            <img src="https://i.ibb.co/PvcCwcx8/Screenshot-2025-03-18-185112.png" alt="Amazon Sales Analysis - Sales Trends" class="project-image">
+                            <div class="project-image-overlay">
+                                <img src="https://i.ibb.co/h66DkjV/Screenshot-2025-03-18-185029.png" alt="Amazon Sales Analysis - Overview" class="popup-image">
+                                <img src="https://i.ibb.co/HLtGWdbp/Screenshot-2025-03-18-185047.png" alt="Amazon Sales Analysis - Product View" class="popup-image">
+                                <img src="https://i.ibb.co/PvcCwcx8/Screenshot-2025-03-18-185112.png" alt="Amazon Sales Analysis - Sales Trends" class="popup-image">
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">Amazon Sales Analysis 2022</h3>
+                            <p class="text-gray-600 mb-2">Analyzed 28,000+ data points using Power BI and DAX queries to uncover sales trends, regional performance, and product insights.</p>
+                            <a href="https://github.com/DipanjanBasak-git/Amazon-Sales-Dashboard-PowerBI" target="_blank" class="github-link">
+                                <i class="fab fa-github"></i> View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Skills</h2>
+                <div class="skills-container">
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <i class="fas fa-chart-pie text-2xl text-purple-700 mr-2"></i>
+                            <span>Microsoft Power BI</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-robot text-2xl text-indigo-600 mr-2"></i>
+                            <span>Generative AI</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-html5 text-2xl text-orange-500 mr-2"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-css3-alt text-2xl text-blue-500 mr-2"></i>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-js text-2xl text-yellow-500 mr-2"></i>
+                            <span>JavaScript</span>
+                        </div>
+                    </div>
+                    <div class="more-skills">
+                        <button class="more-skills-btn">View More Skills</button>
+                        <div class="more-skills-content">
+                            <div class="skills-grid">
+                                <div class="skill-item">
+                                    <i class="fas fa-paint-brush text-2xl text-purple-500 mr-2"></i>
+                                    <span>UI & UX Design</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-handshake text-2xl text-blue-600 mr-2"></i>
+                                    <span>Mergers & Acquisitions</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-code text-2xl text-gray-700 mr-2"></i>
+                                    <span>C & C++</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fab fa-android text-2xl text-green-600 mr-2"></i>
+                                    <span>Android Development</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-heartbeat text-2xl text-red-500 mr-2"></i>
+                                    <span>HealthTech Applications</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-users text-2xl text-indigo-500 mr-2"></i>
+                                    <span>Team Leadership</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-chart-bar text-2xl text-teal-500 mr-2"></i>
+                                    <span>Statistical Analysis</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-chart-line text-2xl text-orange-600 mr-2"></i>
+                                    <span>Business & Financial Analysis</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-shield-alt text-2xl text-red-600 mr-2"></i>
+                                    <span>Advanced System Security</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fab fa-java text-2xl text-red-700 mr-2"></i>
+                                    <span>Java (DSA)</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fab fa-android text-2xl text-green-600 mr-2"></i>
+                                    <span>Android Studio</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-database text-2xl text-blue-700 mr-2"></i>
+                                    <span>Data Analytics (MySQL, SQL)</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-mobile-alt text-2xl text-purple-600 mr-2"></i>
+                                    <span>Responsive Design</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-eye text-2xl text-green-700 mr-2"></i>
+                                    <span>Facial Feature Recognition (ML)</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fab fa-python text-2xl text-blue-500 mr-2"></i>
+                                    <span>Python (OpenCV, scikit-learn, TensorFlow/PyTorch)</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-robot text-2xl text-indigo-600 mr-2"></i>
+                                    <span>AI Workplace Proficiency</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fab fa-git-alt text-2xl text-orange-700 mr-2"></i>
+                                    <span>Version Control (Git/GitHub)</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-fire text-2xl text-orange-500 mr-2"></i>
+                                    <span>Firebase</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-brain text-2xl text-pink-500 mr-2"></i>
+                                    <span>Machine Learning</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Contact Me</h2>
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/dipanjan-basak-49bb59280" target="_blank" class="contact-link">
+                        <i class="fab fa-linkedin-in"></i> LinkedIn
+                    </a>
+                    <a href="mailto:dipanjanbasak28@gmail.com" class="contact-link">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                    <a href="https://github.com/DipanjanBasak-git" target="_blank" class="contact-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chat Bubble -->
+        <div class="chat-bubble">
+            <button id="chatToggle">
+                <i class="fas fa-comments"></i>
+            </button>
+            <div class="chat-overlay">
+                <div class="chat-header">
+                    <span>Ask anything about me!</span>
+                    <button id="closeChat" class="text-white hover:text-gray-200">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Type your message...">
+                    <button id="sendMessage">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+         // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCzoWrGMR0mQZKIHfYID4owvlA4CxgBjmU",
+    authDomain: "dipanjan-portfolio.firebaseapp.com",
+    projectId: "dipanjan-portfolio",
+    storageBucket: "dipanjan-portfolio.firebasestorage.app",
+    messagingSenderId: "924294054915",
+    appId: "1:924294054915:web:75757b1ec7831b203dba36",
+    measurementId: "G-WEVNTX17ED"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const themeIcon = themeToggle.querySelector('i');
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            if (body.classList.contains('dark')) {
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeIcon.classList.replace('fa-sun', `fa-moon`);
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Toggle More Skills on Click
+        const moreSkills = document.querySelector('.more-skills');
+        const moreSkillsBtn = document.querySelector('.more-skills-btn');
+        moreSkillsBtn.addEventListener('click', () => {
+            moreSkills.classList.toggle('active');
+        });
+
+        // Close More Skills when clicking outside
+        document.addEventListener('click', (event) => {
+            if (!moreSkills.contains(event.target)) {
+                moreSkills.classList.remove('active');
+            }
+        });
+
+        // Chat Functionality
+        const chatToggle = document.getElementById('chatToggle');
+        const closeChat = document.getElementById('closeChat');
+        const chatBubble = document.querySelector('.chat-bubble');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendMessage = document.getElementById('sendMessage');
+
+        // Gemini API key
+        const GEMINI_API_KEY = 'AIzaSyAyKl_thmwcGQ9YIV9mtvgXbIx-jKOlPYg';
+
+        // Description to be used in API requests
+        const myDescription = `About me I am a passionate and goal-driven Computer Science and Business Systems (CSBS) student at the Institute of Engineering & Management (IEM), Kolkata, with a strong foundation in Artificial Intelligence, Machine Learning, Data Science, Human-Computer Interaction, and Web Development.
+
+He has successfully published a research paper titled "Machine Learning Applications for Detecting Autism Spectrum Disorder" in the international conference "AI-Driven Smart Healthcare for Society 5.0", indexed in IEEE Xplore. His research reflects a deep commitment to AI-driven healthcare solutions and using technology for real-world social impact.
+
+Dipanjan holds prestigious certifications, including:
+
+Elite Plus Silver certification in Fundamentals of Object-Oriented Programming and Strategic Sales Management from NPTEL.
+
+Job Simulation certifications from J.P. Morgan and AWS (Amazon Web Services) via Forage, enhancing his practical understanding of industry workflows and cloud computing applications.
+
+He is actively working on app development projects in the healthcare sector, aiming to create impactful solutions for social good. His interests also include full-stack development, with a special focus on UI/UX design, aspiring to become a proficient software engineer and full-stack developer.
+
+Dipanjan has hands-on experience managing various projects and budgets, particularly in AI-powered applications, healthcare solutions, and cloud-based systems, giving him valuable practical exposure to software development and execution.
+
+Beyond academics, Dipanjan enjoys sketching and singing as creative outlets. He is a passionate sports enthusiast, with cricket being his favorite sport and Virat Kohli as his favorite cricketer. Additionally, he is a dedicated supporter of FC Barcelona in football.
+
+Key Skills & Interests:
+Artificial Intelligence & Machine Learning
+
+Data Science & Analytics
+
+AI in Healthcare & Social Impact
+
+Human-Computer Interaction (HCI)
+
+Web Development (Front-End & Back-End)
+
+UI/UX Design for Modern Applications
+
+Full-Stack Software Development
+
+Cloud Computing & AWS Ecosystem
+
+App Development for Healthcare Solutions
+
+Project & Budget Management in Tech Initiatives
+
+Object-Oriented Programming (Certified)
+
+Strategic Sales Management (Certified)
+
+Industry Workflow Simulations (J.P. Morgan & AWS - Forage Certified)
+
+Creative Hobbies: Sketching & Singing
+
+Sports Enthusiast: Cricket (Virat Kohli fan) & Football (FC Barcelona)
+
+Professional Aspirations:
+Software Engineer (Full-Stack)
+
+AI & Data Science Researcher
+
+Developer of Real-World Solutions in Healthcare
+
+Innovator in Human-Centered Design & Technology`;
+
+        function toggleChat() {
+            chatBubble.classList.toggle('active');
+            if (chatBubble.classList.contains('active')) {
+                chatMessages.innerHTML = ''; // Clear previous messages
+                addMessage('Hi there! I’m a chatbot here to help you learn more about Dipanjan Basak. What would you like to know?', 'ai');
+            }
+        }
+
+        chatToggle.addEventListener('click', toggleChat);
+        closeChat.addEventListener('click', toggleChat);
+
+        function addMessage(content, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.textContent = content;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return messageDiv;
+        }
+
+        // Function to show typing indicator
+        function showTypingIndicator() {
+            const typingMessage = addMessage('Typing...', 'typing');
+            return typingMessage;
+        }
+
+        // Function to remove typing indicator
+        function removeTypingIndicator(typingMessage) {
+            if (typingMessage && typingMessage.parentNode) {
+                typingMessage.parentNode.removeChild(typingMessage);
+            }
+        }
+
+        // Function to call the Gemini API
+        async function getResponse(message) {
+            try {
+                const prompt = `User_message:${message}. Reply naturally to the usermessage and if required then answer based on: ${myDescription} or just simply give friendly reply. And reply in a way that Dipanjan Basak is himself talking. Reply in short sentences.`;
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{ text: prompt }]
+                        }]
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('API request failed');
+                }
+
+                const data = await response.json();
+                const generatedText = data?.candidates?.[0]?.content?.parts?.[0]?.text || 'Oops! Something went wrong. Let’s try again.';
+                return generatedText;
+            } catch (error) {
+                console.error('Error calling Gemini API:', error);
+                return 'Sorry, I ran into an issue. Can you ask again?';
+            }
+        }
+
+        sendMessage.addEventListener('click', async () => {
+            const message = chatInput.value.trim();
+            if (message) {
+                addMessage(message, 'user');
+                chatInput.value = '';
+
+                // Show typing indicator
+                const typingMessage = showTypingIndicator();
+
+                // Wait for 1.5 seconds to simulate typing
+                await new Promise(resolve => setTimeout(resolve, 1500));
+
+                // Remove typing indicator
+                removeTypingIndicator(typingMessage);
+
+                // Fetch and display the response
+                const response = await getResponse(message);
+                addMessage(response, 'ai');
+            }
+        });
+
+        chatInput.addEventListener('keypress', async (e) => {
+            if (e.key === 'Enter') {
+                sendMessage.click();
+            }
+        });
+
+        // Slider functionality for project cards with multiple images
+        const sliderCards = document.querySelectorAll('.project-card');
+        sliderCards.forEach(card => {
+            const images = card.querySelectorAll('.project-image');
+            if (images.length > 1) {
+                let currentIndex = 0;
+                let interval;
+
+                function showNextImage() {
+                    images[currentIndex].classList.remove('active');
+                    currentIndex = (currentIndex + 1) % images.length;
+                    images[currentIndex].classList.add('active');
+                }
+
+                card.addEventListener('mouseenter', () => {
+                    interval = setInterval(showNextImage, 2000);
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    clearInterval(interval);
+                    images.forEach(img => img.classList.remove('active'));
+                    images[0].classList.add('active');
+                    currentIndex = 0;
+                });
+            }
+        });
+    </script>
+</body>
+</html>
