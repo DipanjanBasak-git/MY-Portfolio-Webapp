@@ -856,7 +856,7 @@
         const sendMessage = document.getElementById('sendMessage');
 
         // Gemini API key
-        const GEMINI_API_KEY = 'AIzaSyAyKl_thmwcGQ9YIV9mtvgXbIx-jKOlPYg';
+        const GEMINI_API_KEY = 'Your API key';
 
         // Description to be used in API requests
         const myDescription = `About me I am a passionate and goal-driven Computer Science and Business Systems (CSBS) student at the Institute of Engineering & Management (IEM), Kolkata, with a strong foundation in Artificial Intelligence, Machine Learning, Data Science, Human-Computer Interaction, and Web Development.
