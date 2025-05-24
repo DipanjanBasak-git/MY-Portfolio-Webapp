@@ -5,7 +5,6 @@
 ## Overview
 Welcome to my personal portfolio website! This project showcases my skills and projects as a Full Stack Developer and Computer Science student at IEM Kolkata. Designed with a clean and modern aesthetic, this portfolio highlights my expertise in web development, API integration, and user-centric design. Explore my work, skills, and contact details through an interactive and visually appealing interface.
 
-🔗 Live Demo: https://dipanjan-portfolio.web.app
 
 ## Here are some sample Images of the Site:
 image 1-- ![Screenshot 2025-05-15 080455](https://github.com/user-attachments/assets/58ec79f6-c02f-474c-9f63-a13b052a1e71)
